@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './Converter.css';
 import './CommonButton.css';
-import tsTonIcon from '../assets/icons/tsTonicon.svg';
+import tsTonIcon from '../assets/icons/tsTonIcon.svg';
 import downArrow from '../assets/icons/downArrow.svg';
 
 const Converter = () => {
