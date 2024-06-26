@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate, Navigate } from 'react-router-dom';
+import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Dashboard from './components/Dashboard';
@@ -8,12 +9,13 @@ import Balance from './components/Balance';
 import Market from './components/Market';
 import Converter from './components/Converter';
 import Onboarding from './components/Onboarding';
-import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import './App.css';
+
+const manifestUrl = 'https://<YOUR_APP_URL>/tonconnect-manifest.json';
 
 const App = () => {
   return (
-    <TonConnectUIProvider manifestUrl="https://667c82e36dfe0f00082c7706--velvety-creponne-48e12c.netlify.app/tonconnect-manifest.json">
+    <TonConnectUIProvider manifestUrl={manifestUrl}>
       <Router>
         <AppRoutes />
       </Router>

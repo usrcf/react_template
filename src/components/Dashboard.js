@@ -1,104 +1,136 @@
-// src/components/Dashboard.js
 import React, { useState } from 'react';
 import './Dashboard.css';
+import ptIcon from '../assets/icons/ptIcon.svg';
+import ytIcon from '../assets/icons/ytIcon.svg';
+import lpIcon from '../assets/icons/lpIcon.svg';
 import infoIcon from '../assets/icons/infoIcon.svg';
-import dashboardBalanceIcon from '../assets/icons/dashboardBalanceIcon.svg';
-import pnlIcon from '../assets/icons/pnlIcon.svg';
-import capitalIcon from '../assets/icons/capitalIcon.svg';
-import yieldIcon from '../assets/icons/yieldIcon.svg';
+import { useTonAddress } from '@tonconnect/ui-react';
 
 const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState('positions');
-  const [activeSubTab, setActiveSubTab] = useState('all');
+  const [activeTab, setActiveTab] = useState('My Positions');
+  const [activeSubTab, setActiveSubTab] = useState('All Assets');
+  const address = useTonAddress();
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
+  const handleSubTabClick = (subTab) => {
+    setActiveSubTab(subTab);
+  };
 
   return (
     <div className="dashboard">
       <div className="dashboard-header">
         <h2>My Dashboard</h2>
-        <span>0x32CU...t6egt <img src="../assets/icons/editIcon.svg" alt="Edit" /></span>
+        <div className="wallet-address">
+          {address ? address : 'Connect wallet'}
+          <img src={infoIcon} alt="info" className="info-icon" />
+        </div>
       </div>
       <div className="dashboard-info">
         <div className="info-item">
-          <img src={dashboardBalanceIcon} alt="Balance" />
-          My Current Balance
-          <img src={infoIcon} alt="Info" className="info-icon" />
+          <span>$ My Current Balance</span>
           <span className="info-value">$0.00</span>
         </div>
         <div className="info-item">
-          <img src={pnlIcon} alt="P&L" />
-          My Net P&L
+          <span>$ My Net P&L</span>
           <span className="info-value">$0.00</span>
         </div>
         <div className="info-item">
-          <img src={capitalIcon} alt="Capital" />
-          My Total Capital
-          <img src={infoIcon} alt="Info" className="info-icon" />
+          <span>$ My Total Capital</span>
+          <img src={infoIcon} alt="info" className="info-icon" />
           <span className="info-value">$0.00</span>
         </div>
         <div className="info-item">
-          <img src={yieldIcon} alt="Yield" />
-          My Claimable Yield
+          <span>$ My Claimable Yield</span>
           <span className="info-value">$0.00</span>
         </div>
+        <button className="common-button">Claim Yield & Rewards</button>
       </div>
-      <button className="common-button">Claim Yield & Rewards</button>
       <div className="dashboard-tabs">
         <button
-          className={activeTab === 'positions' ? 'active' : ''}
-          onClick={() => setActiveTab('positions')}
+          className={activeTab === 'My Positions' ? 'active' : ''}
+          onClick={() => handleTabClick('My Positions')}
         >
           My Positions
         </button>
         <button
-          className={activeTab === 'orders' ? 'active' : ''}
-          onClick={() => setActiveTab('orders')}
+          className={activeTab === 'My Orders' ? 'active' : ''}
+          onClick={() => handleTabClick('My Orders')}
         >
           My Orders
         </button>
       </div>
-      {activeTab === 'positions' && (
-        <div className="sub-tabs">
-          <button
-            className={activeSubTab === 'all' ? 'active' : ''}
-            onClick={() => setActiveSubTab('all')}
-          >
-            All Assets
-          </button>
-          <button
-            className={activeSubTab === 'pt' ? 'active' : ''}
-            onClick={() => setActiveSubTab('pt')}
-          >
-            PT
-          </button>
-          <button
-            className={activeSubTab === 'yt' ? 'active' : ''}
-            onClick={() => setActiveSubTab('yt')}
-          >
-            YT
-          </button>
-          <button
-            className={activeSubTab === 'lp' ? 'active' : ''}
-            onClick={() => setActiveSubTab('lp')}
-          >
-            LP
-          </button>
-        </div>
-      )}
-      {activeTab === 'positions' && activeSubTab === 'all' && (
-        <div className="positions-content">
-          {/* Content for All Assets */}
-          <div className="position-item">
-            <span>Balance</span>
-            <span>APY</span>
+      {activeTab === 'My Positions' && (
+        <div>
+          <div className="sub-tabs">
+            <button
+              className={activeSubTab === 'All Assets' ? 'active' : ''}
+              onClick={() => handleSubTabClick('All Assets')}
+            >
+              All Assets
+            </button>
+            <button
+              className={activeSubTab === 'PT' ? 'active' : ''}
+              onClick={() => handleSubTabClick('PT')}
+            >
+              PT
+            </button>
+            <button
+              className={activeSubTab === 'YT' ? 'active' : ''}
+              onClick={() => handleSubTabClick('YT')}
+            >
+              YT
+            </button>
+            <button
+              className={activeSubTab === 'LP' ? 'active' : ''}
+              onClick={() => handleSubTabClick('LP')}
+            >
+              LP
+            </button>
+          </div>
+          <div className="positions-content">
+            {activeSubTab === 'All Assets' && (
+              <div>
+                <div className="info-item">
+                  <img src={ptIcon} alt="PT" />
+                  <span>PT balance - $0</span>
+                </div>
+                <div className="info-item">
+                  <img src={ytIcon} alt="YT" />
+                  <span>YT balance - $0</span>
+                </div>
+                <div className="info-item">
+                  <img src={lpIcon} alt="LP" />
+                  <span>LP balance - $0</span>
+                </div>
+              </div>
+            )}
+            {activeSubTab === 'PT' && (
+              <div className="info-item">
+                <img src={ptIcon} alt="PT" />
+                <span>PT balance - $0</span>
+              </div>
+            )}
+            {activeSubTab === 'YT' && (
+              <div className="info-item">
+                <img src={ytIcon} alt="YT" />
+                <span>YT balance - $0</span>
+              </div>
+            )}
+            {activeSubTab === 'LP' && (
+              <div className="info-item">
+                <img src={lpIcon} alt="LP" />
+                <span>LP balance - $0</span>
+              </div>
+            )}
           </div>
         </div>
       )}
-      {activeTab === 'orders' && (
+      {activeTab === 'My Orders' && (
         <div className="orders-content">
-          {/* Content for Orders */}
-          <div className="order-item">
-            {/* Order details */}
-          </div>
+          {/*Content for tab My Orders */}
         </div>
       )}
     </div>
