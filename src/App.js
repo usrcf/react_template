@@ -11,7 +11,7 @@ import Converter from './components/Converter';
 import Onboarding from './components/Onboarding';
 import './App.css';
 
-const manifestUrl = 'https://<YOUR_APP_URL>/tonconnect-manifest.json';
+const manifestUrl = 'https://667c82e36dfe0f00082c7706--velvety-creponne-48e12c.netlify.app/tonconnect-manifest.json';
 
 const App = () => {
   return (
