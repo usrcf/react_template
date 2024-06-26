@@ -13,7 +13,7 @@ import './App.css';
 
 const App = () => {
   return (
-    <TonConnectUIProvider manifestUrl="https://YOUR_APP_URL/tonconnect-manifest.json">
+    <TonConnectUIProvider manifestUrl="https://667c82e36dfe0f00082c7706--velvety-creponne-48e12c.netlify.app/tonconnect-manifest.json">
       <Router>
         <AppRoutes />
       </Router>
