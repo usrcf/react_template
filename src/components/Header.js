@@ -1,22 +1,13 @@
-// src/components/Header.js
 import React from 'react';
 import './Header.css';
 import logo from '../assets/icons/fivaLogo.svg';
-import logoutIcon from '../assets/icons/logout.svg';
+import { TonConnectButton } from '@tonconnect/ui-react';
 
-const Header = ({ isWalletConnected, address, connectWallet, disconnectWallet }) => {
+const Header = () => {
   return (
     <header className="header">
       <img src={logo} alt="Logo" className="logo" />
-      {isWalletConnected ? (
-        <button className="connect-wallet" onClick={disconnectWallet}>
-          <img src={logoutIcon} alt="Logout" className="logout-icon" /> {address}
-        </button>
-      ) : (
-        <button className="connect-wallet" onClick={connectWallet}>
-          Connect Wallet
-        </button>
-      )}
+      <TonConnectButton />
     </header>
   );
 };

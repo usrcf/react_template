@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 import Header from './components/Header';
@@ -9,13 +8,16 @@ import Balance from './components/Balance';
 import Market from './components/Market';
 import Converter from './components/Converter';
 import Onboarding from './components/Onboarding';
+import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import './App.css';
 
 const App = () => {
   return (
-    <Router>
-      <AppRoutes />
-    </Router>
+    <TonConnectUIProvider manifestUrl="https://YOUR_APP_URL/tonconnect-manifest.json">
+      <Router>
+        <AppRoutes />
+      </Router>
+    </TonConnectUIProvider>
   );
 };
 
